@@ -16,7 +16,15 @@ import {
   QList,
   QItem,
   QItemSection,
-  QItemLabel
+  QItemLabel,
+  QForm,
+  QInput,
+  QToggle,
+  QCard,
+  QCardSection,
+  QCardActions,
+  QSeparator,
+  Notify
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -34,10 +42,18 @@ Vue.use(Quasar, {
     QList,
     QItem,
     QItemSection,
-    QItemLabel
+    QItemLabel,
+    QForm,
+    QInput,
+    QToggle,
+    QCard,
+    QCardSection,
+    QCardActions,
+    QSeparator
   },
   directives: {
   },
   plugins: {
+    Notify 
   }
 })
