@@ -1,79 +1,71 @@
 <template>
-  <div class="q-pa-md" style="max-width: 400px">
+  <div class="q-pa-md row items-start q-gutter-md center">
+    <q-card class="my-card">
+      <q-card-section class="bg-primary text-white">
+        <div class="text-h6">LOGIN</div>
+      </q-card-section>
 
-    <q-form
-      @submit="onSubmit"
-      @reset="onReset"
-      class="q-gutter-md"
-    >
-      <q-input
-        filled
-        v-model="name"
-        label="Your name *"
-        hint="Name and surname"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'Please type something']"
-      />
+      <q-separator />
+      <q-card-section>
+        <q-form @submit.prevent="onSubmit" class="q-gutter-md">
+          <q-input
+            filled
+            v-model="form.username"
+            label="Username"
+            lazy-rules
+            :rules="[ val => val && val.length > 0 || 'Username wajib diisi']"
+          />
 
-      <q-input
-        filled
-        type="number"
-        v-model="age"
-        label="Your age *"
-        lazy-rules
-        :rules="[
-          val => val !== null && val !== '' || 'Please type your age',
-          val => val > 0 && val < 100 || 'Please type a real age'
-        ]"
-      />
+          <q-input
+            filled
+            v-model="form.password"
+            label="Password"
+            type="password"
+            lazy-rules
+            :rules="[ val => val && val.length > 0 || 'Password wajid diisi']"
+          />
 
-      <q-toggle v-model="accept" label="I accept the license and terms" />
-
-      <div>
-        <q-btn label="Submit" type="submit" color="primary"/>
-        <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
-      </div>
-    </q-form>
-
+          <div>
+            <q-btn label="Submit" type="submit" color="primary" />
+          </div>
+        </q-form>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      name: null,
-      age: null,
-
+      form: {
+        username: null,
+        age: null
+      },
       accept: false
-    }
+    };
   },
 
   methods: {
-    onSubmit () {
-      if (this.accept !== true) {
-        this.$q.notify({
-          color: 'red-5',
-          textColor: 'white',
-          icon: 'warning',
-          message: 'You need to accept the license and terms first'
-        })
-      }
-      else {
-        this.$q.notify({
-          color: 'green-4',
-          textColor: 'white',
-          icon: 'cloud_done',
-          message: 'Submitted'
-        })
-      }
-    },
+    onSubmit() {
+      // if (this.accept !== true) {
 
-    onReset () {
-      this.name = null
-      this.age = null
-      this.accept = false
+      // alert(this.form.username)
+      this.$q.notify({
+        color: "green-4",
+        textColor: "white",
+        icon: "cloud_done",
+        message: "Login Berhasil"
+      });
+      // }
+      this.$router.push('home')
     }
   }
-}
+};
 </script>
+
+<style lang="sass" scoped>
+.my-card
+  width: 100%
+  max-width: 250px
+</style>
