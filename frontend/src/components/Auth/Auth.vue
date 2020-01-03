@@ -35,14 +35,17 @@
 </template>
 
 <script>
+
+import Cookies from 'js-cookie'
+
 export default {
   data() {
     return {
       form: {
-        username: null,
-        age: null
+        username: '',
+        password: ''
       },
-      accept: false
+      // accept: false
     };
   },
 
@@ -50,6 +53,7 @@ export default {
     onSubmit() {
       // if (this.accept !== true) {
 
+      Cookies.set('auth', this.form)
       // alert(this.form.username)
       this.$q.notify({
         color: "green-4",
@@ -58,7 +62,7 @@ export default {
         message: "Login Berhasil"
       });
       // }
-      this.$router.push('home')
+      this.$router.push('/auth/home')
     }
   }
 };
