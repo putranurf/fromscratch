@@ -5,6 +5,9 @@ import router from './router'
 import store from './store'
 import './quasar'
 
+import axios from 'axios'
+axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
+
 Vue.config.productionTip = false
 
 new Vue({

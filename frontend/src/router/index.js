@@ -7,22 +7,23 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/auth'
+    redirect: '/home'
+  },
+  {
+    path: "/home",
+    name: "home",
+    component: () =>
+      import(/* webpackChunkName: "Home Layout" */ "../views/Layout/Home.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/auth",
     name: "auth",
-    meta: {
-      requiresAuth: true
-    },
-    component: () => import(/* webpackChunkName: "Auth" */ "../views/Auth/Auth.vue"),
-    children: [
-      {
-        path: "home",
-        name: "home",
-        component: () => import(/* webpackChunkName: "Home Layout" */ "../views/Layout/Home.vue")
-      }
-    ]
+    // redirect: '/home',
+    component: () =>
+      import(/* webpackChunkName: "Auth" */ "../views/Auth/Auth.vue"),
   },
   //Halaman 404 Not Found
   {
@@ -40,23 +41,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const auth = Cookies.get("auth");
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-
-    const auth = Cookies.get("auth");
-
-    if (auth) {
+    if (!auth) {
       next({
         path: "/auth",
-        query: { redirect: to.fullPath }
+        // query: { redirect: to.fullPath }
       });
     } else {
-      next();
+      next() 
     }
   } else {
     next(); // make sure to always call next()!
   }
 });
+
 
 export default router;

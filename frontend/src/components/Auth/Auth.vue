@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md row items-start q-gutter-md center">
+  <q-page class="row justify-center items-center">
     <q-card class="my-card">
       <q-card-section class="bg-primary text-white">
         <div class="text-h6">LOGIN</div>
@@ -31,20 +31,19 @@
         </q-form>
       </q-card-section>
     </q-card>
-  </div>
+  </q-page>
 </template>
 
 <script>
-
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 
 export default {
   data() {
     return {
       form: {
-        username: '',
-        password: ''
-      },
+        username: "",
+        password: ""
+      }
       // accept: false
     };
   },
@@ -53,7 +52,7 @@ export default {
     onSubmit() {
       // if (this.accept !== true) {
 
-      Cookies.set('auth', this.form)
+      Cookies.set("auth", this.form);
       // alert(this.form.username)
       this.$q.notify({
         color: "green-4",
@@ -62,7 +61,7 @@ export default {
         message: "Login Berhasil"
       });
       // }
-      this.$router.push('/auth/home')
+      this.$router.replace({ name: "home" });
     }
   }
 };
