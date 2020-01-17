@@ -65,19 +65,19 @@
       </q-list>
     </q-drawer>
     <q-page-container>
-      <HelloWorld />
+      <!-- <HelloWorld /> -->
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'LayoutDefault',
 
   components: {
-    HelloWorld
+    // HelloWorld
   },
 
   data () {

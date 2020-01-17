@@ -25,6 +25,15 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "Auth" */ "../views/Auth/Auth.vue"),
   },
+  {
+    path: '/pdf',
+    name: "pdfdoc",
+    component: () =>
+      import(/* webpackChunkName: "Auth" */ "../views/PdfDoc/Pdfdoc.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
   //Halaman 404 Not Found
   {
     path: "*",
